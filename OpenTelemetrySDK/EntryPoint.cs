@@ -9,6 +9,7 @@ using OpenTelemetry.Trace;
 using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry.Exporter;
 using Microsoft.Extensions.Configuration;
+using OpenTelemetry.Instrumentation.AspNetCore;
 
 namespace OpenTelemetrySDK
 {
@@ -20,6 +21,10 @@ namespace OpenTelemetrySDK
                 .AddOpenTelemetry()
                 .WithTracing(builder =>
                 {
+                    builder.SetSampler(new AlwaysOnSampler());
+
+                    builder.AddHttpClientInstrumentation();
+
                     builder.AddAspNetCoreInstrumentation();
                     builder.AddJaegerExporter();
                     builder.ConfigureServices(services => 
