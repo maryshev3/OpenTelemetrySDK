@@ -8,14 +8,13 @@ using OpenTelemetry;
 using OpenTelemetry.Trace;
 using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry.Exporter;
-using System.Reflection.PortableExecutable;
 using Microsoft.Extensions.Configuration;
 
 namespace OpenTelemetrySDK
 {
     public class EntryPoint
     {
-        public void InjectOpenTelemetryJager(IServiceCollection serviceCollection, IConfiguration configuration)
+        public static void InjectOpenTelemetryJager(IServiceCollection serviceCollection, IConfiguration configuration)
         {
             serviceCollection
                 .AddOpenTelemetry()
